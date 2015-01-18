@@ -3,6 +3,11 @@ class Email
     self.value = value
   end
 
+  def to_s
+    value
+  end
+  alias_method :to_str, :to_s
+
   def value
     @value
   end
