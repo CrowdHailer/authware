@@ -17,4 +17,16 @@ class EmailTest < MiniTest::Test
   def test_adds_to_strings
     assert_equal 'test@example.com', ('' + Email.new('test@example.com'))
   end
+
+  def test_raises_error_for_email_with_no_at
+    assert_raises Email::Invalid do
+      Email.new('bad')
+    end
+  end
+
+  def test_raises_error_for_email_with_two_ats
+    assert_raises Email::Invalid do
+      Email.new('a@b@c.com')
+    end
+  end
 end
