@@ -10,6 +10,8 @@ GEM
       minitest (>= 5.0)
       ruby-progressbar
     ruby-progressbar (1.7.1)
+    sequel (4.18.0)
+    sqlite3 (1.3.10)
 
 PLATFORMS
   ruby
@@ -17,3 +19,5 @@ PLATFORMS
 DEPENDENCIES
   minitest
   minitest-reporters
+  sequel
+  sqlite3
