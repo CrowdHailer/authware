@@ -9,9 +9,14 @@ class Email
     value
   end
   alias_method :to_str, :to_s
+  alias_method :dump, :to_s
 
   def value
     @value
+  end
+
+  def self.dump
+    raise 5
   end
 
   def value=(new_value)
