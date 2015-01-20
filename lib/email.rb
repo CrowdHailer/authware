@@ -1,8 +1,22 @@
+module Stash
+  ItemError = Class.new(StandardError)
+
+  def dump(item)
+    raise ItemError.new unless item.is_a?(self)
+    item.dump
+  end
+end
+
 class Email
   Invalid = Class.new(StandardError)
+  extend Stash
 
   def initialize(value)
     self.value = value
+  end
+
+  def self.load(string)
+    new(string)
   end
 
   def to_s
@@ -13,14 +27,6 @@ class Email
 
   def value
     @value
-  end
-
-  def self.dump(item)
-    item.dump
-  end
-
-  def self.load(x)
-    new(x)
   end
 
   def value=(new_value)

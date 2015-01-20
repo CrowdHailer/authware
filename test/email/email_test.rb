@@ -33,4 +33,10 @@ class EmailTest < MiniTest::Test
       Email.new('a@b@c.com')
     end
   end
+
+  def test_raises_error_when_dumping_not_an_email
+    assert_raises Stash::ItemError do
+      Email.dump('string')
+    end
+  end
 end
