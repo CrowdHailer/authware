@@ -19,10 +19,15 @@ module Sequel
 end
 class User
   class Record < Sequel::Model(:users)
-
     plugin Sequel::Plugins::Stash
-    # serialize :Email, :at => :contact_email
+
+    def initialize(*args, &block)
+      super
+      self.id ||= SecureRandom.uuid()
+    end
+
     stash :Email
+    # serialize :Email, :at => :contact_email
   end
 
 end
