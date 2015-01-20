@@ -1,4 +1,5 @@
 require './lib/email'
+require './lib/password'
 Sequel::Model.db = Sequel.connect('sqlite://db/app.db')
 
 module Sequel
@@ -17,6 +18,7 @@ module Sequel
     end
   end
 end
+
 class User
   class Record < Sequel::Model(:users)
     plugin Sequel::Plugins::Stash
@@ -27,6 +29,7 @@ class User
     end
 
     stash :Email
+    stash :Password
     # serialize :Email, :at => :contact_email
   end
 
