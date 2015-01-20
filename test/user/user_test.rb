@@ -7,7 +7,5 @@ class UserTest < MiniTest::Test
     r = User::Record.new :email => email
     r.save
     r.reload
-    puts r.values
-    puts r.email == email
   end
 end
