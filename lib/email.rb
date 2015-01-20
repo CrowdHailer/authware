@@ -28,7 +28,7 @@ class Email
   end
 
   def ==(other)
-    value == other.value
+    other.is_a?(self.class) && value == other.value
   end
   # alias_method :eql?, :==
 

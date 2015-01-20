@@ -18,6 +18,10 @@ class EmailTest < MiniTest::Test
     assert_equal 'test@example.com', ('' + Email.new('test@example.com'))
   end
 
+  def test_is_not_equal_to_string
+    refute_equal Email.new('test@example.com'), 'test@example.com'
+  end
+
   def test_raises_error_for_email_with_no_at
     assert_raises Email::Invalid do
       Email.new('bad')
