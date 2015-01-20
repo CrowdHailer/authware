@@ -15,8 +15,12 @@ class Email
     @value
   end
 
-  def self.dump
-    raise 5
+  def self.dump(item)
+    item.dump
+  end
+
+  def self.load(x)
+    new(x)
   end
 
   def value=(new_value)

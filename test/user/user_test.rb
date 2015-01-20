@@ -7,5 +7,7 @@ class UserTest < MiniTest::Test
     r = User::Record.new :email => email
     r.save
     r.reload
+
+    assert_equal email, r.email
   end
 end
