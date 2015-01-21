@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.2.0'
 
+gem 'scorched'
 gem 'sequel'
 gem 'sqlite3'
 gem 'bcrypt'
