@@ -1,4 +1,5 @@
 require './lib/password'
+require 'typtanic/email'
 require 'sequel/plugins/stash'
 Sequel::Model.db = Sequel.connect('sqlite://db/app.db')
 
