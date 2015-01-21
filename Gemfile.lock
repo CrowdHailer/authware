@@ -1,4 +1,9 @@
 PATH
+  remote: gems/sequel-stash
+  specs:
+    sequel-stash (0.0.1)
+
+PATH
   remote: gems/typtanic
   specs:
     typtanic (0.0.1)
@@ -27,5 +32,6 @@ DEPENDENCIES
   minitest
   minitest-reporters
   sequel
+  sequel-stash!
   sqlite3
   typtanic!

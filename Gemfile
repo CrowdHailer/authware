@@ -6,6 +6,7 @@ gem 'sequel'
 gem 'sqlite3'
 gem 'bcrypt'
 gem 'typtanic', :path => 'gems/typtanic'
+gem 'sequel-stash', :path => 'gems/sequel-stash'
 
 group :test do
   gem 'minitest', :require => 'minitest/autorun'
