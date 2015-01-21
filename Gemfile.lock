@@ -1,3 +1,8 @@
+PATH
+  remote: gems/typtanic
+  specs:
+    typtanic (0.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -23,3 +28,4 @@ DEPENDENCIES
   minitest-reporters
   sequel
   sqlite3
+  typtanic!
