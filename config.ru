@@ -1,8 +1,9 @@
 require 'scorched'
 class App < Scorched::Controller
   get '/' do
-    puts id
-    'hello world'
+    @id = id
+    puts render_defaults
+    render :welcome
   end
 
   after do
