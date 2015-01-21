@@ -1,5 +1,4 @@
-require_relative '../test_config'
-require './lib/email'
+require_relative './../test_config'
 
 class EmailTest < MiniTest::Test
   def test_is_equal_for_same_email
