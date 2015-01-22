@@ -6,6 +6,15 @@ class App < Scorched::Controller
     render :welcome
   end
 
+  get(/\/\d+/) do
+    puts 'yeehaw'
+
+  end
+  get '/:id' do |variable|
+
+  end
+
+
   after do
     puts 'noob'
   end
@@ -18,4 +27,5 @@ class App < Scorched::Controller
     request.GET['id']
   end
 end
+puts App.mappings
 run App
