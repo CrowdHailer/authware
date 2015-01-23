@@ -1,11 +1,17 @@
+# setup as development enviroment unless otherwise specified
 RACK_ENV = ENV['RACK_ENV'] ||= 'development'  unless defined?(RACK_ENV)
+
+# Set Application Root
+APP_ROOT = File.expand_path('..', __FILE__) unless defined?(APP_ROOT)
 
 # Sets up all of load paths that are searched when requiring code
 require 'bundler/setup'
 
 # requires all gems for the current runtime enviroment
 Bundler.require(:default, RACK_ENV)
-require './lib/password'
+
+# require the lib directory
+Dir[APP_ROOT + '/lib/**/*.rb'].each {|file| require file }
 
 class App < Scorched::Controller
 end
@@ -53,6 +59,12 @@ class User
       end
     end
   end
+
+  class Show
+    def self.call(id)
+      "id times #{id}"
+    end
+  end
 end
 
 class UserController < App
@@ -61,8 +73,7 @@ class UserController < App
   render_defaults[:layout] = :'../application'
 
   def index
-    ap response.body
-    response.body = ::User::Record.all.map(&:email).join('<br>')
+      response.body = ::User::Record.all.map(&:email).join('<br>')
   end
 
   def new
@@ -76,7 +87,7 @@ class UserController < App
   end
 
   def show(id)
-    User::Show.call(id, current_user)
+    User::Show.call(id)
   end
 end
 
