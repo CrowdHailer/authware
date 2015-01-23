@@ -1,10 +1,11 @@
+RACK_ENV = ENV['RACK_ENV'] ||= 'development'  unless defined?(RACK_ENV)
+
+# Sets up all of load paths that are searched when requiring code
 require 'bundler/setup'
-require 'scorched'
-require 'typtanic/email'
-require 'typtanic/password'
+
+# requires all gems for the current runtime enviroment
+Bundler.require(:default, RACK_ENV)
 require './lib/password'
-require 'awesome_print'
-puts require_relative './lib/user'
 
 class App < Scorched::Controller
 end
@@ -58,7 +59,7 @@ class UserController < App
   include Scorched::RestActions
   render_defaults[:dir] << '/user'
   render_defaults[:layout] = :'../application'
-  
+
   def index
     ap response.body
     response.body = ::User::Record.all.map(&:email).join('<br>')
@@ -75,7 +76,7 @@ class UserController < App
   end
 
   def show(id)
-    puts id
+    User::Show.call(id, current_user)
   end
 end
 
