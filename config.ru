@@ -46,13 +46,6 @@ class User
         @email = Email.new(raw['email'])
       end
 
-      def to_hash
-        {
-          :email => @email,
-          :password => @password
-        }
-      end
-
       def empty?
         false
       end
@@ -81,7 +74,6 @@ class UserController < App
   end
 
   def new
-    # raise RuntimeError
     render :new
   end
 
