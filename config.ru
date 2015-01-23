@@ -1,8 +1,10 @@
+require 'bundler/setup'
 require 'scorched'
 require 'typtanic/email'
 require 'typtanic/password'
 require './lib/password'
-require './lib/user'
+require 'awesome_print'
+puts require_relative './lib/user'
 
 class App < Scorched::Controller
 end
@@ -36,6 +38,15 @@ class User
           :password => @password
         }
       end
+
+      def empty?
+        false
+      end
+
+      def each
+        yield :email, @email
+        yield :password, @password
+      end
     end
   end
 end
@@ -44,7 +55,8 @@ class UserController < RestController
   render_defaults[:dir] << '/user'
   render_defaults[:layout] = :'../application'
   def index
-    'sss'
+    ap request.breadcrumb
+    ::User::Record.all.map(&:email).join('<br>')
   end
 
   def new
@@ -52,9 +64,9 @@ class UserController < RestController
   end
 
   def create
-    puts request.params
     form = User::Create::Form.new(request.POST['user'])
-    puts form.to_hash
+    ::User::Record.create form
+    redirect '/users'
   end
 
   def show(id)
@@ -63,5 +75,4 @@ class UserController < RestController
 end
 
 App.controller '/users', UserController
-puts App.mappings
 run App
