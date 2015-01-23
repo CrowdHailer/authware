@@ -77,10 +77,11 @@ class UserController < App
   render_defaults[:layout] = :'../application'
 
   def index
-    response.body = flash[:success].to_s + '<br>'+ ::User::Record.all.map(&:email).join('<br>')
+    render :index, :locals => {:bob => 'haddahsd'}
   end
 
   def new
+    # raise RuntimeError
     render :new
   end
 
@@ -93,6 +94,15 @@ class UserController < App
 
   def show(id)
     User::Show.call(id)
+  end
+
+  def users
+    ::User::Record.all
+  end
+  private
+
+  def current_user
+    'mike'
   end
 end
 
