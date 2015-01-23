@@ -1,4 +1,5 @@
 <form class="pure-form" action="/users" method="POST">
+  <%= Rack::Csrf.tag(env) %>
   <fieldset>
     <legend>New User</legend>
 

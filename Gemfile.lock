@@ -26,6 +26,8 @@ GEM
     rack (1.6.0)
     rack-accept (0.4.5)
       rack (>= 0.4)
+    rack_csrf (2.5.0)
+      rack (>= 1.1.0)
     ruby-progressbar (1.7.1)
     scorched (0.22)
       rack (~> 1.4)
@@ -47,6 +49,7 @@ DEPENDENCIES
   bcrypt
   minitest
   minitest-reporters
+  rack_csrf
   scorched
   sequel
   sequel-stash!

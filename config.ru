@@ -14,6 +14,10 @@ Bundler.require(:default, RACK_ENV)
 Dir[APP_ROOT + '/lib/**/*.rb'].each {|file| require file }
 
 class App < Scorched::Controller
+  middleware << proc do
+    use Rack::Session::Cookie, secret: 'blah'
+    use Rack::Csrf, :raise => true
+  end
 end
 
 module Scorched
@@ -73,7 +77,7 @@ class UserController < App
   render_defaults[:layout] = :'../application'
 
   def index
-      response.body = ::User::Record.all.map(&:email).join('<br>')
+    response.body = flash[:success].to_s + '<br>'+ ::User::Record.all.map(&:email).join('<br>')
   end
 
   def new
@@ -83,6 +87,7 @@ class UserController < App
   def create
     form = User::Create::Form.new(request.POST['user'])
     ::User::Record.create form
+    flash[:success] = 'aloha'
     redirect '/users'
   end
 
