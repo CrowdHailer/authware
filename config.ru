@@ -1,4 +1,8 @@
 require 'scorched'
+require 'typtanic/email'
+require 'typtanic/password'
+require './lib/password'
+require './lib/user'
 
 class App < Scorched::Controller
 end
@@ -18,10 +22,39 @@ class RestController < App
   end
 end
 
+class User
+  class Create
+    class Form
+      def initialize(raw)
+        @password = Password.new(raw['password'])
+        @email = Email.new(raw['email'])
+      end
+
+      def to_hash
+        {
+          :email => @email,
+          :password => @password
+        }
+      end
+    end
+  end
+end
+
 class UserController < RestController
   render_defaults[:dir] << '/user'
+  render_defaults[:layout] = :'../application'
+  def index
+    'sss'
+  end
+
   def new
     render :new
+  end
+
+  def create
+    puts request.params
+    form = User::Create::Form.new(request.POST['user'])
+    puts form.to_hash
   end
 
   def show(id)
@@ -29,6 +62,6 @@ class UserController < RestController
   end
 end
 
-App.controller '/user', UserController
+App.controller '/users', UserController
 puts App.mappings
 run App
