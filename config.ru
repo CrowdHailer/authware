@@ -38,6 +38,25 @@ module Scorched
   end
 end
 
+# Email.new 'dopey' raises Typtanic::Invalid
+# Form captures and puts invalid type in place
+# Invalid type returns nil when dumped
+# Validator questions if object is valid
+# Invalid type returns that it is invalid
+# is initialized with something that says why it is invalid
+# Other methods such as length passed through and validated on as normal
+# Deposit object has upper and lower limit methods set to 0 and 100 can be over written in subclass so returns an invalid object with message
+# class X
+ # def self.new(x)
+  #  return error if x == 4
+  #  super
+  #  end
+ # def initialize(y)
+  #  puts y
+  #  end
+ # end
+
+
 class User
   class Create
     class Form
